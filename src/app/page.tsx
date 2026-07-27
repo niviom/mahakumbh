@@ -1,14 +1,14 @@
 import Link from "next/link";
 import DPMaker from "@/components/DPMaker";
 import VideoPlayer from "@/components/VideoPlayer";
+import Reveal from "@/components/Reveal";
 
 // Direct Wistia delivery links (converted from the wistia-player embeds — no embed script loaded).
 const heroVideo = "https://embed-ssl.wistia.com/deliveries/c67b7f9d0ec4d2f4e3b63a30cb0b8ed607502cc1.bin";
-const heroThumbnail = "/assets/hero-poster.jpg";
 
-// "Mahakumbh Hall of Honour" (30s cut) used as the Experience section footage.
-const gatheringVideo = "https://embed-ssl.wistia.com/deliveries/b8068f0d5df12b0c8bae8d87c3849c0cb0f04943.bin";
-const gatheringPoster = "https://embed-ssl.wistia.com/deliveries/eda53d6e475a833f84b2236fcef28aa88446a483.bin";
+// "Experiance" clip used as the Experience section footage.
+const gatheringVideo = "https://embed-ssl.wistia.com/deliveries/ff366cd973b88eb2023fde9554acf1f8d1f500f9.bin";
+const gatheringPoster = "https://embed-ssl.wistia.com/deliveries/294aff086e2017112d577b21401967c21f8d4e22.bin";
 
 const aiCenterVideo = "https://embed-ssl.wistia.com/deliveries/32f072a151008e1e16bc7285da131b9d33f9bba5.bin";
 const logo = "/assets/pagariya-mahakumbh-logo.png";
@@ -23,14 +23,14 @@ const aiPoster = "/assets/universe/ai.jpg";
 const bhojanamPoster = "/assets/universe/bhojanam.jpg";
 const honourPoster = "/assets/universe/honour.jpg";
 const jioWorldHotel = "/assets/hotels/jio-world.jpg";
-const tridentHotel = "/assets/hotels/trident-bkc.jpg";
-const sofitelHotel = "/assets/hotels/sofitel-bkc.jpg";
-const stRegisHotel = "/assets/hotels/st-regis.jpg";
-const grandHyattHotel = "/assets/hotels/grand-hyatt.jpg";
-const jwMarriottHotel = "/assets/hotels/jw-marriott-sahar.jpg";
-const novotelHotel = "/assets/hotels/novotel-airport.jpg";
-const courtyardHotel = "/assets/hotels/courtyard-kalina.jpg";
-const tajSantacruzHotel = "/assets/hotels/taj-santacruz.jpg";
+const tridentDeluxeHotel = "/assets/hotels/1-trident-bkc-deluxe.jpg";
+const tridentPoolViewHotel = "/assets/hotels/2-trident-bkc-poolview.jpg";
+const sofitelHotel = "/assets/hotels/3-sofitel-bkc-luxury.jpg";
+const ibisHotel = "/assets/hotels/4-ibis-bkc-standard.jpg";
+const gingerAirportHotel = "/assets/hotels/5-ginger-airport-standard.jpg";
+const aurikaDeluxHotel = "/assets/hotels/6-aurika-skycity-airport-delux.jpg";
+const aurikaPremiumHotel = "/assets/hotels/7-aurika-skycity-airport-premium.jpg";
+const lemonTreeHotel = "/assets/hotels/8-lemon-tree-premier-standard.jpg";
 const bhansaliLogo = "/assets/sponsors/sponsor-bhansali.png";
 const goldNahar = "/assets/sponsors/sponsor-nahar.png";
 const goldPagariyaGroup = "/assets/sponsors/sponsor-pagariya-group.png";
@@ -88,53 +88,97 @@ interface GalaxyZone {
 }
 
 const GalaxyUniverse = ({ zones }: { zones: GalaxyZone[] }) => {
-  return (
-    <section id="galaxy" className="relative py-24 sm:py-32 px-6 overflow-hidden">
-      <div
-        className="pointer-events-none absolute inset-0 flex items-start justify-center"
-        aria-hidden
-      >
-        <div
-          className="w-[700px] h-[700px] rounded-full mt-8"
-          style={{ background: "radial-gradient(circle, oklch(0.72 0.14 78 / 0.09) 0%, transparent 70%)" }}
-        />
-      </div>
+  const ringConfigs = [
+    { radiusVar: "var(--orbit-radius-1)", duration: 26, items: zones.slice(0, 3), zBase: 6 },
+    { radiusVar: "var(--orbit-radius-2)", duration: 36, items: zones.slice(3, 7), zBase: 8 },
+    { radiusVar: "var(--orbit-radius-3)", duration: 48, items: zones.slice(7, 10), zBase: 10 },
+  ];
 
-      <div className="relative max-w-3xl mx-auto text-center">
+  return (
+    <section id="galaxy" className="relative py-24 sm:py-32 px-3 sm:px-6 overflow-hidden">
+      <Reveal className="max-w-7xl mx-auto text-center">
         <p className="text-xs tracking-[0.4em] uppercase text-[oklch(0.82_0.14_82)]">The Constellation</p>
         <h2 className="font-display text-4xl sm:text-6xl mt-4 text-gold">The Mahakumbh Universe</h2>
         <Divider />
-        <p className="max-w-xl mx-auto text-[oklch(0.85_0.03_85)] leading-relaxed">
-          Ten flagship zones, each a world of its own. Explore any of them below.
-        </p>
+      </Reveal>
+
+      <div className="galaxy-area mt-16 sm:mt-20">
+        {/* Ambient background glow */}
+        <div
+          className="absolute inset-0 rounded-full"
+          style={{ background: "radial-gradient(circle, oklch(0.72 0.14 78 / 0.12) 0%, transparent 65%)" }}
+        />
+
+        {/* Core sun */}
+        <div className="galaxy-core">
+          <div className="font-display leading-tight text-[oklch(0.14_0.05_265)]">
+            Mahakumbh
+            <br />
+            Universe
+          </div>
+        </div>
+
+        {/* Orbit rings and planets */}
+        {ringConfigs.map((ring, ringIndex) => (
+          <div
+            key={ringIndex}
+            className="galaxy-orbit-ring"
+            style={{ width: `calc(${ring.radiusVar} * 2)`, height: `calc(${ring.radiusVar} * 2)` }}
+          />
+        ))}
+
+        {ringConfigs.map((ring, ringIndex) =>
+          ring.items.map((zone, itemIndex) => {
+            const total = ring.items.length;
+            const startAngle = (360 / total) * itemIndex + ringIndex * 55;
+
+            return (
+              <a
+                key={zone.no}
+                href={`#universe-${zone.no}`}
+                className="galaxy-planet"
+                style={{
+                  "--orbit-radius": ring.radiusVar,
+                  "--orbit-duration": `${ring.duration}s`,
+                  "--start-angle": startAngle,
+                  "--planet-color": zone.color,
+                  "--planet-glow": zone.glow,
+                  "--planet-z": ring.zBase,
+                } as React.CSSProperties}
+                aria-label={`${zone.no}. ${zone.title}`}
+              >
+                <span className="galaxy-planet-number">{zone.no}</span>
+                <div className={`galaxy-planet-body ${zone.planetType}`} />
+                {zone.hasRings && <span className="galaxy-planet-rings" />}
+                <span className="galaxy-planet-label">{zone.title}</span>
+                <span className="galaxy-planet-tooltip">{zone.tagline}</span>
+              </a>
+            );
+          })
+        )}
       </div>
 
-      <div className="relative max-w-6xl mx-auto mt-16 sm:mt-20 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-x-6 gap-y-12 sm:gap-y-14">
+      <Reveal className="text-center mt-10 sm:mt-14">
+        <p className="text-xs tracking-[0.3em] uppercase text-[oklch(0.75_0.04_85)]">
+          Click a planet to explore its zone
+        </p>
+      </Reveal>
+
+      {/* Mobile-only legend — orbit is too tight for floating labels below 640px */}
+      <div className="sm:hidden mt-6 grid grid-cols-2 gap-2 max-w-sm mx-auto">
         {zones.map((zone) => (
           <a
             key={zone.no}
             href={`#universe-${zone.no}`}
-            className="group flex flex-col items-center text-center gap-4"
+            className="flex items-center gap-2 rounded-sm border border-[oklch(0.72_0.14_78/0.25)] bg-[oklch(0.2_0.06_265/0.6)] px-2.5 py-2 text-left"
           >
-            <div
-              className="zone-orb-wrap"
-              style={{
-                "--planet-color": zone.color,
-                "--planet-glow": zone.glow,
-              } as React.CSSProperties}
+            <span
+              className="flex-none flex items-center justify-center w-5 h-5 rounded-full text-[0.6rem] font-bold text-[oklch(0.18_0.06_265)]"
+              style={{ background: "var(--gradient-gold)" }}
             >
-              <div className={`zone-orb ${zone.planetType}`} />
-              {zone.hasRings && <span className="zone-orb-rings" />}
-              <span className="zone-orb-number">{zone.no}</span>
-            </div>
-            <div>
-              <p className="text-xs sm:text-sm font-semibold text-gold leading-snug group-hover:text-[oklch(0.95_0.15_88)] transition-colors">
-                {zone.title}
-              </p>
-              <p className="hidden sm:block text-[11px] text-[oklch(0.7_0.04_85)] mt-1.5 leading-snug italic">
-                {zone.tagline}
-              </p>
-            </div>
+              {zone.no}
+            </span>
+            <span className="text-[0.65rem] leading-tight text-[oklch(0.85_0.03_85)]">{zone.title}</span>
           </a>
         ))}
       </div>
@@ -279,18 +323,30 @@ export default function Home() {
     <main className="relative min-h-screen overflow-x-hidden text-foreground pb-24 sm:pb-28">
 
       {/* NOTIFICATION BAR */}
-      <div className="fixed top-0 inset-x-0 z-50 bg-gold text-[oklch(0.18_0.06_265)] text-center text-xs sm:text-sm font-medium tracking-[0.2em] uppercase py-2 px-4">
-        14<sup>th</sup>, 15<sup>th</sup>, 16<sup>th</sup> August — Save the Date
+      <div className="fixed top-0 inset-x-0 z-50 bg-gold text-[oklch(0.18_0.06_265)] text-xs sm:text-sm font-medium tracking-[0.2em] uppercase py-1.5 sm:py-2 px-4">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-3 text-center">
+          <span>
+            14<sup>th</sup>, 15<sup>th</sup>, 16<sup>th</sup> August — Save the Date
+          </span>
+          <a
+            href="https://app.jitojbnapp.com/event/pagariya-jbn-mahakumbh-2026"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="md:hidden underline decoration-2 font-bold whitespace-nowrap"
+          >
+            Register Now
+          </a>
+        </div>
       </div>
 
       {/* HEADER */}
-      <header className="fixed top-8 sm:top-9 inset-x-0 z-40 bg-gradient-to-r from-[oklch(0.14_0.05_265)] via-[oklch(0.22_0.08_265)] to-[oklch(0.14_0.05_265)] border-b border-[oklch(0.72_0.14_78/0.25)] shadow-[0_10px_30px_-15px_oklch(0_0_0/0.8)]">
-        <div className="flex items-center justify-center md:justify-between px-6 sm:px-12 py-4">
+      <header className="hidden md:block fixed top-8 sm:top-9 inset-x-0 z-40 bg-gradient-to-r from-[oklch(0.14_0.05_265)] via-[oklch(0.22_0.08_265)] to-[oklch(0.14_0.05_265)] border-b border-[oklch(0.72_0.14_78/0.25)] shadow-[0_10px_30px_-15px_oklch(0_0_0/0.8)]">
+        <div className="flex items-center justify-center md:justify-between px-6 sm:px-12 py-2.5">
           <Link href="/" className="flex items-center justify-center">
             <img
               src={logo}
               alt="Pagariya JBN Mahakumbh"
-              className="h-[5.85rem] sm:h-[6.825rem] w-auto object-contain"
+              className="h-11 sm:h-14 w-auto object-contain"
               width={600}
               height={120}
             />
@@ -313,46 +369,60 @@ export default function Home() {
       </header>
 
       {/* HERO */}
-      <section className="relative min-h-screen flex flex-col pt-40 sm:pt-48">
+      <section className="relative min-h-screen flex flex-col pt-14 sm:pt-8 md:pt-24 lg:pt-28">
         {/* Hero content */}
-        <div className="relative z-10 flex-1 flex items-center justify-center px-6 py-16">
-          <div className="relative max-w-5xl w-full text-center px-6 py-10 sm:py-16">
-            <div className="inline-flex items-center px-4 sm:px-6 py-2 sm:py-2.5 mb-6 rounded-full bg-gradient-to-r from-[oklch(0.72_0.14_78)] via-[oklch(0.82_0.14_82)] to-[oklch(0.72_0.14_78)] shadow-[0_0_24px_-6px_oklch(0.72_0.14_78/0.5)]">
-              <p className="text-xs sm:text-sm tracking-[0.25em] uppercase text-[oklch(0.15_0.05_250)] font-semibold">
-                Biggest Business Festival
-              </p>
-            </div>
-            <h1 className="font-display text-4xl sm:text-6xl md:text-7xl leading-[1.05] text-gold">
-              Register for
-              <br />
-              <em className="not-italic">Pagariya JBN Mahakumbh 2026</em>
-            </h1>
-            <div className="mt-8 sm:mt-10 relative mx-0 sm:mx-auto w-[calc(100vw-2rem)] left-1/2 -translate-x-1/2 sm:static sm:w-auto sm:max-w-4xl sm:translate-x-0 sm:left-0 rounded-lg overflow-hidden border-2 border-[oklch(0.72_0.14_78/0.5)] shadow-[0_0_60px_-15px_oklch(0.72_0.14_78/0.4)]">
+        <div className="relative z-10 flex-1 flex items-start sm:items-center justify-center px-6 py-8">
+          <div className="relative max-w-5xl w-full text-center px-6 py-6 sm:py-8">
+            <Reveal>
+              <img
+                src={logo}
+                alt="Pagariya JBN Mahakumbh"
+                className="h-24 sm:h-24 w-auto object-contain mx-auto mb-6"
+                width={600}
+                height={120}
+              />
+              <div className="inline-flex items-center px-4 sm:px-6 py-2 sm:py-2.5 mb-6 rounded-full bg-gradient-to-r from-[oklch(0.72_0.14_78)] via-[oklch(0.82_0.14_82)] to-[oklch(0.72_0.14_78)] shadow-[0_0_24px_-6px_oklch(0.72_0.14_78/0.5)]">
+                <p className="text-xs sm:text-sm tracking-[0.25em] uppercase text-[oklch(0.15_0.05_250)] font-semibold">
+                  Biggest Business Festival
+                </p>
+              </div>
+              <h1 className="font-display text-4xl sm:text-6xl md:text-7xl leading-[1.05] text-gold">
+                Register for
+                <br />
+                <em className="not-italic">Pagariya JBN Mahakumbh 2026</em>
+              </h1>
+            </Reveal>
+            <Reveal delay={150} className="mt-8 sm:mt-10 relative mx-0 sm:mx-auto w-[calc(100vw-2rem)] left-1/2 -translate-x-1/2 sm:static sm:w-auto sm:max-w-4xl sm:translate-x-0 sm:left-0 rounded-lg overflow-hidden border-2 border-[oklch(0.72_0.14_78/0.5)] shadow-[0_0_60px_-15px_oklch(0.72_0.14_78/0.4)]">
               <VideoPlayer
                 src={heroVideo}
                 autoPlay
                 loop
                 playsInline
                 controls
-                className="w-full h-auto object-cover"
+                playOnFirstInteraction
+                width={1280}
+                height={720}
+                className="w-full aspect-video object-cover"
               />
-            </div>
-            <Divider />
-            <p className="max-w-2xl mx-auto text-sm sm:text-base text-[oklch(0.88_0.03_85)] leading-relaxed">
-              Be a part of the biggest business festival of all time. Pagaria JBN Mahakumbh 2026 is happening at Mumbai (Jio World Convention Centre).
-            </p>
-            <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
-              <a
-                href="https://app.jitojbnapp.com/event/pagariya-jbn-mahakumbh-2026"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center px-8 py-3 w-full sm:w-auto sm:min-w-[14rem] bg-gold rounded-sm font-medium tracking-wide shadow-[var(--shadow-gold)] hover:brightness-110 transition"
-              >
-                Register Now
-              </a>
-            </div>
+            </Reveal>
+            <Reveal delay={250}>
+              <Divider />
+              <p className="max-w-2xl mx-auto text-sm sm:text-base text-[oklch(0.88_0.03_85)] leading-relaxed">
+                Be a part of the biggest business festival of all time. Pagaria JBN Mahakumbh 2026 is happening at Mumbai (Jio World Convention Centre).
+              </p>
+              <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a
+                  href="https://app.jitojbnapp.com/event/pagariya-jbn-mahakumbh-2026"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center px-8 py-3 w-full sm:w-auto sm:min-w-[14rem] bg-gold rounded-sm font-medium tracking-wide shadow-[var(--shadow-gold)] hover:brightness-110 transition"
+                >
+                  Register Now
+                </a>
+              </div>
+            </Reveal>
 
-            <div className="mt-12 grid grid-cols-2 sm:grid-cols-4 gap-6 pt-8 border-t border-[oklch(0.72_0.14_78/0.25)]">
+            <Reveal delay={350} className="mt-12 grid grid-cols-2 sm:grid-cols-4 gap-6 pt-8 border-t border-[oklch(0.72_0.14_78/0.25)]">
               {stats.map((s) => (
                 <div key={s.v}>
                   <div className="font-display text-3xl sm:text-4xl text-gold">{s.k}</div>
@@ -361,7 +431,7 @@ export default function Home() {
                   </div>
                 </div>
               ))}
-            </div>
+            </Reveal>
           </div>
         </div>
       </section>
@@ -369,12 +439,12 @@ export default function Home() {
       {/* BHAMASHAH PARTNERS / SPONSORS */}
       <section className="relative py-20 sm:py-28 px-6">
         <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-14">
+          <Reveal className="text-center mb-14">
             <h2 className="font-display text-3xl sm:text-5xl text-gold">Bhamashah Partners</h2>
             <Divider />
-          </div>
+          </Reveal>
 
-          <div className="text-center mb-10">
+          <Reveal className="text-center mb-10">
             <p className="text-xs tracking-[0.3em] uppercase text-[oklch(0.75_0.04_85)] mb-4">
               Event Title Sponsor
             </p>
@@ -387,13 +457,13 @@ export default function Home() {
                 height={180}
               />
             </div>
-          </div>
+          </Reveal>
 
           <div className="text-center mt-14">
             <p className="text-xs tracking-[0.3em] uppercase text-[oklch(0.75_0.04_85)] mb-6">Gold Sponsors</p>
-            <div className="grid grid-cols-2 gap-4 sm:gap-6 max-w-3xl mx-auto">
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-5 max-w-6xl mx-auto">
               {[
-                { name: "Nahar Group", src: goldNahar },
+                { name: "Epack Durable", src: goldEpackDurable },
                 { name: "Pagariya Group", src: goldPagariyaGroup },
                 { name: "Authum", src: goldAuthum },
                 { name: "RDB Group", src: goldRdbGroup },
@@ -403,24 +473,23 @@ export default function Home() {
                 { name: "Waaree", src: goldWaaree },
                 { name: "Monarch Networkworth Capital", src: goldMonarchNetworkworth },
                 { name: "Mohan Mutha Infrastructures", src: goldMohanMutha },
-                { name: "Epack Durable", src: goldEpackDurable },
-              ].map((sponsor) => (
-                <div
-                  key={sponsor.name}
-                  className="bg-white rounded-lg p-4 flex items-center justify-center shadow-[0_4px_20px_-8px_oklch(0_0_0/0.5)] hover:scale-[1.02] transition-transform"
-                >
-                  <img
-                    src={sponsor.src}
-                    alt={sponsor.name}
-                    className="w-full h-auto object-contain"
-                    width={190}
-                    height={98}
-                  />
-                </div>
+                { name: "Nahar Group", src: goldNahar },
+              ].map((sponsor, i) => (
+                <Reveal key={sponsor.name} delay={(i % 4) * 80}>
+                  <div className="bg-white rounded-lg p-3 sm:p-4 flex items-center justify-center shadow-[0_4px_20px_-8px_oklch(0_0_0/0.5)] hover:scale-[1.02] transition-transform">
+                    <img
+                      src={sponsor.src}
+                      alt={sponsor.name}
+                      className="w-28 h-14 sm:w-36 sm:h-16 object-contain"
+                      width={190}
+                      height={98}
+                    />
+                  </div>
+                </Reveal>
               ))}
               <a
                 href="#support"
-                className="group relative rounded-lg border border-dashed border-[oklch(0.72_0.14_78/0.5)] bg-[oklch(0.72_0.14_78/0.08)] p-4 flex flex-col items-center justify-center gap-2 min-h-[100px] sm:min-h-[120px] hover:bg-[oklch(0.72_0.14_78/0.14)] transition-colors"
+                className="group relative rounded-lg border border-dashed border-[oklch(0.72_0.14_78/0.5)] bg-[oklch(0.72_0.14_78/0.08)] p-3 sm:p-4 flex flex-col items-center justify-center gap-1.5 min-h-[88px] sm:min-h-[112px] hover:bg-[oklch(0.72_0.14_78/0.14)] transition-colors"
               >
                 <span className="text-[oklch(0.82_0.14_82)] text-xs sm:text-sm tracking-[0.2em] uppercase text-center">
                   Add Your Brand Here
@@ -441,7 +510,7 @@ export default function Home() {
       <section id="universe" className="relative py-24 sm:py-32 px-6">
 
         <div className="max-w-7xl mx-auto">
-          <div className="text-center">
+          <Reveal className="text-center">
             <p className="text-xs tracking-[0.4em] uppercase text-[oklch(0.82_0.14_82)]">One Mahakumbh · Ten Flagship Zones</p>
             <h2 className="font-display text-4xl sm:text-6xl mt-4 text-gold">The Mahakumbh Universe</h2>
             <Divider />
@@ -449,44 +518,45 @@ export default function Home() {
               A universe of premium experiences across 2.52 lakh+ sq. ft. of Jio World Convention Centre —
               ten iconic, repeatable zones where entry itself is a mark of achievement.
             </p>
-          </div>
+          </Reveal>
 
           <div className="grid md:grid-cols-2 gap-8 mt-16">
-            {universe.map((z) => (
-              <article
-                key={z.no}
-                id={`universe-${z.no}`}
-                className="relative ornate-frame rounded-sm bg-[oklch(0.2_0.06_265/0.6)] backdrop-blur-sm overflow-hidden group scroll-mt-40"
-              >
+            {universe.map((z, i) => (
+              <Reveal key={z.no} delay={(i % 2) * 100}>
+                <article
+                  id={`universe-${z.no}`}
+                  className="relative ornate-frame rounded-sm bg-[oklch(0.2_0.06_265/0.6)] backdrop-blur-sm overflow-hidden group scroll-mt-40"
+                >
 
-                <div className="relative overflow-hidden">
-                  <VideoPlayer
-                    src={z.video}
-                    poster={z.poster}
-                    controls
-                    preload="none"
-                    className="w-full h-64 sm:h-72 object-cover"
-                    width={1024}
-                    height={1024}
-                    aria-label={z.title}
-                  />
-                  <div className="absolute top-3 left-3 bg-[oklch(0.14_0.05_265/0.8)] border border-gold px-3 py-1 rounded-sm">
-                    <span className="font-display text-lg text-gold">{z.no}</span>
+                  <div className="relative overflow-hidden">
+                    <VideoPlayer
+                      src={z.video}
+                      poster={z.poster}
+                      controls
+                      preload="none"
+                      className="w-full h-64 sm:h-72 object-cover"
+                      width={1024}
+                      height={1024}
+                      aria-label={z.title}
+                    />
+                    <div className="absolute top-3 left-3 bg-[oklch(0.14_0.05_265/0.8)] border border-gold px-3 py-1 rounded-sm">
+                      <span className="font-display text-lg text-gold">{z.no}</span>
+                    </div>
                   </div>
-                </div>
-                <div className="p-6 sm:p-8">
-                  <p className="text-[10px] sm:text-xs tracking-[0.3em] uppercase text-[oklch(0.82_0.14_82)]">{z.floor}</p>
-                  <h3 className="font-display text-2xl sm:text-3xl text-gold mt-2">{z.title}</h3>
-                  <p className="italic text-[oklch(0.9_0.1_85)] mt-2 text-sm sm:text-base">{z.tagline}</p>
-                  <div className="h-px w-16 my-4 bg-gradient-to-r from-[oklch(0.72_0.14_78)] to-transparent" />
-                  <p className="text-[oklch(0.82_0.03_85)] leading-relaxed text-sm sm:text-base">{z.body}</p>
-                </div>
-              </article>
+                  <div className="p-6 sm:p-8">
+                    <p className="text-[10px] sm:text-xs tracking-[0.3em] uppercase text-[oklch(0.82_0.14_82)]">{z.floor}</p>
+                    <h3 className="font-display text-2xl sm:text-3xl text-gold mt-2">{z.title}</h3>
+                    <p className="italic text-[oklch(0.9_0.1_85)] mt-2 text-sm sm:text-base">{z.tagline}</p>
+                    <div className="h-px w-16 my-4 bg-gradient-to-r from-[oklch(0.72_0.14_78)] to-transparent" />
+                    <p className="text-[oklch(0.82_0.03_85)] leading-relaxed text-sm sm:text-base">{z.body}</p>
+                  </div>
+                </article>
+              </Reveal>
             ))}
           </div>
 
           {/* Scale strip */}
-          <div className="mt-20 ornate-frame rounded-sm p-8 sm:p-12 bg-[oklch(0.18_0.06_265/0.7)] backdrop-blur text-center">
+          <Reveal className="mt-20 ornate-frame rounded-sm p-8 sm:p-12 bg-[oklch(0.18_0.06_265/0.7)] backdrop-blur text-center">
             <p className="text-xs tracking-[0.4em] uppercase text-[oklch(0.82_0.14_82)]">By the Numbers</p>
             <h3 className="font-display text-3xl sm:text-4xl text-gold mt-3">Scale & Numbers</h3>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-8 text-left">
@@ -508,7 +578,7 @@ export default function Home() {
                 </div>
               ))}
             </div>
-          </div>
+          </Reveal>
         </div>
       </section>
 
@@ -516,7 +586,7 @@ export default function Home() {
       <section id="experience" className="relative py-24 px-6">
 
         <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-start">
-          <div>
+          <Reveal>
             <p className="text-xs tracking-[0.4em] uppercase text-[oklch(0.82_0.14_82)]">The Experience</p>
             <h2 className="font-display text-4xl sm:text-5xl mt-4 text-gold">
               A festival staged like a state banquet.
@@ -540,27 +610,34 @@ export default function Home() {
                 </li>
               ))}
             </ul>
-          </div>
-          <div className="relative ornate-frame rounded-sm overflow-hidden">
-            <VideoPlayer
-              src={gatheringVideo}
-              poster={gatheringPoster}
-              controls
-              className="w-full h-auto"
-              width={1920}
-              height={1080}
-              preload="metadata"
-              aria-label="An opulent gathering of India's boldest founders, investors and visionaries across 250,000 sqft in Mumbai"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-[oklch(0.14_0.05_265)] via-transparent to-transparent pointer-events-none" />
-          </div>
+          </Reveal>
+          <Reveal delay={150} className="relative ornate-frame rounded-sm overflow-hidden bg-[oklch(0.2_0.06_265/0.6)] backdrop-blur-sm">
+            <div className="relative">
+              <VideoPlayer
+                src={gatheringVideo}
+                poster={gatheringPoster}
+                controls
+                className="w-full aspect-video object-cover"
+                width={1920}
+                height={1080}
+                preload="metadata"
+                aria-label="An opulent gathering of India's boldest founders, investors and visionaries across 250,000 sqft in Mumbai"
+              />
+            </div>
+            <div className="p-5 sm:p-6 border-t border-[oklch(0.72_0.14_78/0.25)]">
+              <p className="text-[10px] tracking-[0.3em] uppercase text-[oklch(0.82_0.14_82)]">Live from the Festival</p>
+              <p className="text-sm text-[oklch(0.85_0.03_85)] mt-1.5 leading-relaxed">
+                An opulent gathering, staged inside Jio World Convention Centre.
+              </p>
+            </div>
+          </Reveal>
         </div>
       </section>
 
       {/* HOTELS & ACCOMMODATION */}
       <section id="stay" className="relative py-24 sm:py-32 px-6">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center">
+          <Reveal className="text-center">
             <p className="text-xs tracking-[0.4em] uppercase text-[oklch(0.82_0.14_82)]">Where to Stay</p>
             <h2 className="font-display text-4xl sm:text-6xl mt-4 text-gold">Hotels & Accommodation</h2>
             <Divider />
@@ -568,7 +645,7 @@ export default function Home() {
               Curated luxury stays within minutes of Jio World Convention Centre, BKC.
               Preferred rates for Mahakumbh delegates — reserve early, seats and suites both fill fast.
             </p>
-          </div>
+          </Reveal>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mt-16">
             {[
@@ -580,89 +657,88 @@ export default function Home() {
                 image: jioWorldHotel,
               },
               {
-                tier: "Luxury",
+                tier: "Deluxe Room",
                 name: "Trident, Bandra Kurla",
-                distance: "0.4 km · 2 min drive",
+                distance: "In BKC · Minutes from JWCC",
                 note: "Contemporary five-star tower overlooking BKC — the delegate favourite.",
-                image: tridentHotel,
+                image: tridentDeluxeHotel,
+              },
+              {
+                tier: "Pool View Room",
+                name: "Trident, Bandra Kurla",
+                distance: "In BKC · Minutes from JWCC",
+                note: "Same five-star comfort, with sweeping pool-deck views.",
+                image: tridentPoolViewHotel,
               },
               {
                 tier: "Luxury",
                 name: "Sofitel Mumbai BKC",
-                distance: "0.6 km · 3 min drive",
+                distance: "In BKC · Minutes from JWCC",
                 note: "French art de vivre, Michelin-guided dining, private meeting salons.",
                 image: sofitelHotel,
               },
               {
-                tier: "Luxury",
-                name: "The St. Regis Mumbai",
-                distance: "6 km · Lower Parel",
-                note: "Butler service, iconic skyline suites, legendary Sunday brunch.",
-                image: stRegisHotel,
+                tier: "Standard Room",
+                name: "Ibis Mumbai BKC",
+                distance: "In BKC · Minutes from JWCC",
+                note: "Smart, efficient stays just steps from BKC.",
+                image: ibisHotel,
               },
               {
-                tier: "Premium",
-                name: "Grand Hyatt Mumbai",
-                distance: "3 km · Santacruz East",
-                note: "Sprawling grounds, celebrated restaurants, quick BKC access.",
-                image: grandHyattHotel,
+                tier: "Standard Room",
+                name: "Ginger Mumbai Airport",
+                distance: "Near Mumbai Airport",
+                note: "Budget-friendly comfort, ideal for fly-in delegates.",
+                image: gingerAirportHotel,
               },
               {
-                tier: "Premium",
-                name: "JW Marriott Mumbai Sahar",
-                distance: "5 km · Near Airport",
-                note: "Ideal for fly-in delegates — Airport-adjacent with executive lounges.",
-                image: jwMarriottHotel,
+                tier: "Deluxe Room",
+                name: "Aurika Skycity Mumbai, Airport",
+                distance: "Near Mumbai Airport",
+                note: "Sleek airport-adjacent tower with skyline views.",
+                image: aurikaDeluxHotel,
               },
               {
-                tier: "Business",
-                name: "Novotel Mumbai International Airport",
-                distance: "6 km · Near Airport",
-                note: "Modern, efficient, walking distance to Terminal 2.",
-                image: novotelHotel,
+                tier: "Premium Room",
+                name: "Aurika Skycity Mumbai, Airport",
+                distance: "Near Mumbai Airport",
+                note: "Same skyline tower, elevated premium comfort.",
+                image: aurikaPremiumHotel,
               },
               {
-                tier: "Business",
-                name: "Courtyard by Marriott, Kalina",
-                distance: "3 km · Kalina",
-                note: "Contemporary rooms, close to BKC, dependable service.",
-                image: courtyardHotel,
+                tier: "Standard Room",
+                name: "Lemon Tree Premier",
+                distance: "Mumbai",
+                note: "Vibrant, contemporary stays with dependable service.",
+                image: lemonTreeHotel,
               },
-              {
-                tier: "Boutique",
-                name: "Taj Santacruz",
-                distance: "5 km · Santacruz",
-                note: "Indian palace grandeur, spa, and impeccable Taj hospitality.",
-                image: tajSantacruzHotel,
-              },
-            ].map((h) => (
-              <article
-                key={h.name}
-                className="relative ornate-frame rounded-sm overflow-hidden bg-[oklch(0.2_0.06_265/0.6)] backdrop-blur-sm hover:translate-y-[-4px] transition-transform"
-              >
-                <div className="relative h-48 sm:h-56 overflow-hidden">
-                  <img
-                    src={h.image}
-                    alt={h.name}
-                    loading="lazy"
-                    width={1024}
-                    height={576}
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[oklch(0.14_0.05_265)] via-transparent to-transparent" />
-                </div>
-                <div className="p-6 sm:p-7">
-                  <p className="text-[10px] tracking-[0.3em] uppercase text-[oklch(0.82_0.14_82)]">{h.tier}</p>
-                  <h3 className="font-display text-2xl text-gold mt-2 leading-tight">{h.name}</h3>
-                  <div className="h-px w-12 my-3 bg-gradient-to-r from-[oklch(0.72_0.14_78)] to-transparent" />
-                  <p className="text-sm text-[oklch(0.9_0.1_85)]">{h.distance}</p>
-                  <p className="text-sm text-[oklch(0.82_0.03_85)] leading-relaxed mt-2">{h.note}</p>
-                </div>
-              </article>
+            ].map((h, i) => (
+              <Reveal key={h.name} delay={(i % 3) * 100} className="h-full">
+                <article className="relative h-full flex flex-col ornate-frame rounded-sm overflow-hidden bg-[oklch(0.2_0.06_265/0.6)] backdrop-blur-sm hover:translate-y-[-4px] transition-transform">
+                  <div className="relative aspect-[4/5] overflow-hidden bg-[oklch(0.14_0.05_265)]">
+                    <img
+                      src={h.image}
+                      alt={h.name}
+                      loading="lazy"
+                      width={1024}
+                      height={1280}
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[oklch(0.14_0.05_265)] via-transparent to-transparent pointer-events-none" />
+                  </div>
+                  <div className="p-6 sm:p-7 flex-1 flex flex-col">
+                    <p className="text-[10px] tracking-[0.3em] uppercase text-[oklch(0.82_0.14_82)]">{h.tier}</p>
+                    <h3 className="font-display text-2xl text-gold mt-2 leading-tight">{h.name}</h3>
+                    <div className="h-px w-12 my-3 bg-gradient-to-r from-[oklch(0.72_0.14_78)] to-transparent" />
+                    <p className="text-sm text-[oklch(0.9_0.1_85)]">{h.distance}</p>
+                    <p className="text-sm text-[oklch(0.82_0.03_85)] leading-relaxed mt-2">{h.note}</p>
+                  </div>
+                </article>
+              </Reveal>
             ))}
           </div>
 
-          <div className="mt-12 text-center">
+          <Reveal className="mt-12 text-center">
             <p className="text-sm text-[oklch(0.75_0.04_85)] max-w-2xl mx-auto">
               Our concierge will assist with reservations, airport transfers and chauffeured commute between hotel and venue.
               Share your preferences when requesting your invite.
@@ -673,31 +749,8 @@ export default function Home() {
             >
               Request Concierge Assistance
             </a>
-          </div>
+          </Reveal>
 
-          <div className="mt-14 max-w-xl mx-auto ornate-frame rounded-sm p-6 sm:p-8 bg-[oklch(0.2_0.06_265/0.6)] backdrop-blur-sm text-center">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="mx-auto text-[oklch(0.82_0.14_82)]">
-              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-              <path d="M14 2v6h6" />
-              <path d="M9 15h6M9 11h6M9 19h3" />
-            </svg>
-            <h3 className="font-display text-xl sm:text-2xl text-gold mt-3">Hotel Price List</h3>
-            <p className="text-sm text-[oklch(0.82_0.03_85)] leading-relaxed mt-2">
-              Room tariffs and preferred rates for every listed hotel, in one PDF.
-            </p>
-            <a
-              href="/assets/mahakumbh-carousal-hotel.pdf"
-              download
-              className="inline-flex items-center gap-2 mt-6 px-8 py-3 bg-gold rounded-sm font-medium tracking-wide shadow-[var(--shadow-gold)] hover:brightness-110 transition"
-            >
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-                <polyline points="7 10 12 15 17 10" />
-                <line x1="12" y1="15" x2="12" y2="3" />
-              </svg>
-              Download Hotel Price List
-            </a>
-          </div>
         </div>
       </section>
 
@@ -705,7 +758,7 @@ export default function Home() {
       {/* SUPPORT CONTACT */}
       <section id="support" className="relative py-16 sm:py-24 px-6">
         <div className="max-w-4xl mx-auto text-center">
-          <div className="relative ornate-frame rounded-sm p-8 sm:p-12 bg-[oklch(0.18_0.06_265/0.7)] backdrop-blur">
+          <Reveal className="relative ornate-frame rounded-sm p-8 sm:p-12 bg-[oklch(0.18_0.06_265/0.7)] backdrop-blur">
             <CornerOrnament className="top-2 left-2" />
             <CornerOrnament className="top-2 right-2 -scale-x-100" />
             <CornerOrnament className="bottom-2 left-2 -scale-y-100" />
@@ -725,7 +778,7 @@ export default function Home() {
               </svg>
               <span className="text-base sm:text-lg">Hitesh Jain — +91 8655370291</span>
             </a>
-          </div>
+          </Reveal>
         </div>
       </section>
 
@@ -735,15 +788,13 @@ export default function Home() {
 
 
       <footer className="relative border-t border-[oklch(0.72_0.14_78/0.2)] py-10 px-6 text-center text-sm text-[oklch(0.7_0.04_85)]">
-        <div className="flex items-center justify-center gap-2 mb-3">
-          <svg width="18" height="18" viewBox="0 0 24 24" className="text-[oklch(0.82_0.14_82)]">
-            <path
-              d="M12 2 L14 10 L22 12 L14 14 L12 22 L10 14 L2 12 L10 10 Z"
-              fill="currentColor"
-            />
-          </svg>
-          <span className="font-display text-lg text-gold">Mahakumbh</span>
-        </div>
+        <img
+          src={logo}
+          alt="Pagariya JBN Mahakumbh"
+          className="h-12 sm:h-14 w-auto object-contain mx-auto mb-3"
+          width={600}
+          height={120}
+        />
         <p>© MMXXVI · The Biggest Business Festive · Mumbai, India</p>
       </footer>
 

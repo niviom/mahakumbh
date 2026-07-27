@@ -1,22 +1,49 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
-type VideoPlayerProps = React.VideoHTMLAttributes<HTMLVideoElement>;
+type VideoPlayerProps = React.VideoHTMLAttributes<HTMLVideoElement> & {
+  /** Start playing on the visitor's first click anywhere on the page (browsers block real autoPlay until then). */
+  playOnFirstInteraction?: boolean;
+};
 
-export default function VideoPlayer({ onPlay, onPause, ...props }: VideoPlayerProps) {
+// Shared across every VideoPlayer instance on the page, so starting one pauses whichever other one was playing.
+let currentlyPlaying: HTMLVideoElement | null = null;
+
+export default function VideoPlayer({
+  onPlay,
+  onPause,
+  playOnFirstInteraction = false,
+  ...props
+}: VideoPlayerProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [playing, setPlaying] = useState(false);
+
+  useEffect(() => {
+    if (!playOnFirstInteraction) return;
+    const startOnFirstClick = () => {
+      videoRef.current?.play().catch(() => {});
+    };
+    document.addEventListener("click", startOnFirstClick, { once: true });
+    return () => document.removeEventListener("click", startOnFirstClick);
+  }, [playOnFirstInteraction]);
 
   return (
     <>
       <video
         ref={videoRef}
         onPlay={(e) => {
+          if (currentlyPlaying && currentlyPlaying !== e.currentTarget) {
+            currentlyPlaying.pause();
+          }
+          currentlyPlaying = e.currentTarget;
           setPlaying(true);
           onPlay?.(e);
         }}
         onPause={(e) => {
+          if (currentlyPlaying === e.currentTarget) {
+            currentlyPlaying = null;
+          }
           setPlaying(false);
           onPause?.(e);
         }}
