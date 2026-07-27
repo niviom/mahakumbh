@@ -122,6 +122,10 @@
     border-color: var(--color-border);
   }
 
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
     background: var(--gradient-royal);
     background-attachment: fixed;

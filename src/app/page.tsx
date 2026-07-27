@@ -320,7 +320,7 @@ export default function Home() {
   ];
 
   return (
-    <main className="relative min-h-screen overflow-x-hidden text-foreground pb-24 sm:pb-28">
+    <main id="top" className="relative min-h-screen overflow-x-hidden text-foreground pb-24 sm:pb-28">
 
       {/* NOTIFICATION BAR */}
       <div className="fixed top-0 inset-x-0 z-50 bg-gold text-[oklch(0.18_0.06_265)] text-xs sm:text-sm font-medium tracking-[0.2em] uppercase py-1.5 sm:py-2 px-4">
@@ -342,7 +342,7 @@ export default function Home() {
       {/* HEADER */}
       <header className="hidden md:block fixed top-8 sm:top-9 inset-x-0 z-40 bg-gradient-to-r from-[oklch(0.14_0.05_265)] via-[oklch(0.22_0.08_265)] to-[oklch(0.14_0.05_265)] border-b border-[oklch(0.72_0.14_78/0.25)] shadow-[0_10px_30px_-15px_oklch(0_0_0/0.8)]">
         <div className="flex items-center justify-center md:justify-between px-6 sm:px-12 py-2.5">
-          <Link href="/" className="flex items-center justify-center">
+          <Link href="#top" className="flex items-center justify-center">
             <img
               src={logo}
               alt="Pagariya JBN Mahakumbh"
@@ -354,7 +354,6 @@ export default function Home() {
           <nav className="hidden md:flex items-center gap-8 text-sm text-[oklch(0.85_0.05_85)]">
             <a href="#universe" className="hover:text-[oklch(0.92_0.15_88)] transition">The Festive</a>
             <a href="#experience" className="hover:text-[oklch(0.92_0.15_88)] transition">Experience</a>
-            <a href="#agenda" className="hover:text-[oklch(0.92_0.15_88)] transition">Agenda</a>
             <a href="#support" className="hover:text-[oklch(0.92_0.15_88)] transition">Support</a>
           </nav>
           <a
