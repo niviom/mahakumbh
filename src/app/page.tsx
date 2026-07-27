@@ -1,5 +1,6 @@
 import Link from "next/link";
 import DPMaker from "@/components/DPMaker";
+import VideoPlayer from "@/components/VideoPlayer";
 
 // Direct Wistia delivery links (converted from the wistia-player embeds — no embed script loaded).
 const heroVideo = "https://embed-ssl.wistia.com/deliveries/c67b7f9d0ec4d2f4e3b63a30cb0b8ed607502cc1.bin";
@@ -327,9 +328,8 @@ export default function Home() {
               <em className="not-italic">Pagariya JBN Mahakumbh 2026</em>
             </h1>
             <div className="mt-8 sm:mt-10 relative mx-0 sm:mx-auto w-[calc(100vw-2rem)] left-1/2 -translate-x-1/2 sm:static sm:w-auto sm:max-w-4xl sm:translate-x-0 sm:left-0 rounded-lg overflow-hidden border-2 border-[oklch(0.72_0.14_78/0.5)] shadow-[0_0_60px_-15px_oklch(0.72_0.14_78/0.4)]">
-              <video
+              <VideoPlayer
                 src={heroVideo}
-                poster={heroThumbnail}
                 autoPlay
                 loop
                 playsInline
@@ -460,7 +460,7 @@ export default function Home() {
               >
 
                 <div className="relative overflow-hidden">
-                  <video
+                  <VideoPlayer
                     src={z.video}
                     poster={z.poster}
                     controls
@@ -542,7 +542,7 @@ export default function Home() {
             </ul>
           </div>
           <div className="relative ornate-frame rounded-sm overflow-hidden">
-            <video
+            <VideoPlayer
               src={gatheringVideo}
               poster={gatheringPoster}
               controls
