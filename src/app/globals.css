@@ -1,5 +1,5 @@
-@import "tailwindcss";
-@import "tw-animate-css";
+@import 'tailwindcss';
+@import 'tw-animate-css';
 
 @custom-variant dark (&:is(.dark *));
 
@@ -104,15 +104,30 @@
   --sidebar-border: oklch(0.62 0.13 70 / 0.3);
   --sidebar-ring: var(--gold);
 
-  --gradient-royal: radial-gradient(ellipse at top, oklch(0.28 0.09 265) 0%, oklch(0.14 0.05 265) 55%, oklch(0.09 0.04 265) 100%);
-  --gradient-gold: linear-gradient(135deg, oklch(0.72 0.14 78) 0%, oklch(0.92 0.15 88) 40%, oklch(0.62 0.13 70) 100%);
-  --gradient-gold-text: linear-gradient(180deg, oklch(0.95 0.14 90) 0%, oklch(0.82 0.15 82) 45%, oklch(0.55 0.12 68) 100%);
+  --gradient-royal: radial-gradient(
+    ellipse at top,
+    oklch(0.28 0.09 265) 0%,
+    oklch(0.14 0.05 265) 55%,
+    oklch(0.09 0.04 265) 100%
+  );
+  --gradient-gold: linear-gradient(
+    135deg,
+    oklch(0.72 0.14 78) 0%,
+    oklch(0.92 0.15 88) 40%,
+    oklch(0.62 0.13 70) 100%
+  );
+  --gradient-gold-text: linear-gradient(
+    180deg,
+    oklch(0.95 0.14 90) 0%,
+    oklch(0.82 0.15 82) 45%,
+    oklch(0.55 0.12 68) 100%
+  );
   --shadow-gold: 0 20px 60px -20px oklch(0.72 0.14 78 / 0.5);
   --shadow-royal: 0 30px 80px -30px oklch(0 0 0 / 0.8);
 }
 
 @theme inline {
-  --font-display: var(--font-cormorant), "Playfair Display", serif;
+  --font-display: var(--font-cormorant), 'Playfair Display', serif;
   --font-sans: var(--font-inter), system-ui, sans-serif;
   --font-body: var(--font-inter), system-ui, sans-serif;
 }
@@ -133,8 +148,11 @@
     font-family: var(--font-inter), system-ui, sans-serif;
   }
 
-  h1, h2, h3, h4 {
-    font-family: var(--font-cormorant), "Playfair Display", serif;
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-cormorant), 'Playfair Display', serif;
     letter-spacing: 0.01em;
   }
 }
@@ -180,18 +198,46 @@
 
 /* Starfield background */
 .galaxy-area::before {
-  content: "";
+  content: '';
   position: absolute;
   inset: 0;
   border-radius: 50%;
   background-image:
-    radial-gradient(circle at 22% 18%, oklch(0.95 0.02 90 / 0.9) 1px, transparent 1.5px),
-    radial-gradient(circle at 78% 24%, oklch(0.85 0.02 250 / 0.8) 1px, transparent 1.5px),
-    radial-gradient(circle at 14% 62%, oklch(0.95 0.02 90 / 0.7) 1px, transparent 1.5px),
-    radial-gradient(circle at 88% 74%, oklch(0.9 0.03 85 / 0.8) 1px, transparent 1.5px),
-    radial-gradient(circle at 52% 12%, oklch(0.8 0.02 60 / 0.7) 0.5px, transparent 1px),
-    radial-gradient(circle at 36% 84%, oklch(0.9 0.02 90 / 0.6) 0.5px, transparent 1px),
-    radial-gradient(circle at 66% 38%, oklch(0.85 0.02 250 / 0.6) 0.5px, transparent 1px);
+    radial-gradient(
+      circle at 22% 18%,
+      oklch(0.95 0.02 90 / 0.9) 1px,
+      transparent 1.5px
+    ),
+    radial-gradient(
+      circle at 78% 24%,
+      oklch(0.85 0.02 250 / 0.8) 1px,
+      transparent 1.5px
+    ),
+    radial-gradient(
+      circle at 14% 62%,
+      oklch(0.95 0.02 90 / 0.7) 1px,
+      transparent 1.5px
+    ),
+    radial-gradient(
+      circle at 88% 74%,
+      oklch(0.9 0.03 85 / 0.8) 1px,
+      transparent 1.5px
+    ),
+    radial-gradient(
+      circle at 52% 12%,
+      oklch(0.8 0.02 60 / 0.7) 0.5px,
+      transparent 1px
+    ),
+    radial-gradient(
+      circle at 36% 84%,
+      oklch(0.9 0.02 90 / 0.6) 0.5px,
+      transparent 1px
+    ),
+    radial-gradient(
+      circle at 66% 38%,
+      oklch(0.85 0.02 250 / 0.6) 0.5px,
+      transparent 1px
+    );
   pointer-events: none;
   opacity: 0.55;
 }
@@ -204,8 +250,14 @@
   width: 3.5rem;
   height: 3.5rem;
   border-radius: 50%;
-  background:
-    radial-gradient(circle at 32% 28%, oklch(0.98 0.1 90) 0%, oklch(0.95 0.15 88) 14%, oklch(0.82 0.14 82) 38%, oklch(0.62 0.13 70) 72%, oklch(0.35 0.08 60) 100%);
+  background: radial-gradient(
+    circle at 32% 28%,
+    oklch(0.98 0.1 90) 0%,
+    oklch(0.95 0.15 88) 14%,
+    oklch(0.82 0.14 82) 38%,
+    oklch(0.62 0.13 70) 72%,
+    oklch(0.35 0.08 60) 100%
+  );
   box-shadow:
     0 0 40px oklch(0.82 0.14 82 / 0.6),
     0 0 80px oklch(0.72 0.14 78 / 0.35),
@@ -226,11 +278,15 @@
 }
 
 .galaxy-core::after {
-  content: "";
+  content: '';
   position: absolute;
   inset: -40%;
   border-radius: 50%;
-  background: radial-gradient(circle, oklch(0.82 0.14 82 / 0.22) 0%, transparent 60%);
+  background: radial-gradient(
+    circle,
+    oklch(0.82 0.14 82 / 0.22) 0%,
+    transparent 60%
+  );
   z-index: -1;
   animation: galaxy-corona 8s ease-in-out infinite;
 }
@@ -244,15 +300,27 @@
   border: 1px solid transparent;
   background:
     radial-gradient(circle, transparent 0%, transparent 100%) padding-box,
-    linear-gradient(180deg, oklch(0.72 0.14 78 / 0.18) 0%, oklch(0.72 0.14 78 / 0.05) 50%, oklch(0.72 0.14 78 / 0.18) 100%) border-box;
+    linear-gradient(
+        180deg,
+        oklch(0.72 0.14 78 / 0.18) 0%,
+        oklch(0.72 0.14 78 / 0.05) 50%,
+        oklch(0.72 0.14 78 / 0.18) 100%
+      )
+      border-box;
   pointer-events: none;
   z-index: 1;
 }
 
 /* Outer rings rendered above inner rings for natural solar-system depth */
-.galaxy-orbit-ring:nth-of-type(1) { z-index: 1; }
-.galaxy-orbit-ring:nth-of-type(2) { z-index: 2; }
-.galaxy-orbit-ring:nth-of-type(3) { z-index: 3; }
+.galaxy-orbit-ring:nth-of-type(1) {
+  z-index: 1;
+}
+.galaxy-orbit-ring:nth-of-type(2) {
+  z-index: 2;
+}
+.galaxy-orbit-ring:nth-of-type(3) {
+  z-index: 3;
+}
 
 .galaxy-planet {
   position: absolute;
@@ -269,7 +337,9 @@
   z-index: var(--planet-z, 5);
   animation: galaxy-planet-orbit linear infinite;
   animation-duration: var(--orbit-duration, 24s);
-  transition: transform 0.3s ease, z-index 0s;
+  transition:
+    transform 0.3s ease,
+    z-index 0s;
 }
 
 .galaxy-planet:hover {
@@ -283,12 +353,22 @@
   height: 100%;
   border-radius: 50%;
   overflow: hidden;
-  background: var(--planet-color, radial-gradient(circle at 30% 30%, oklch(0.92 0.14 88) 0%, oklch(0.72 0.14 78) 50%, oklch(0.45 0.11 65) 100%));
+  background: var(
+    --planet-color,
+    radial-gradient(
+      circle at 30% 30%,
+      oklch(0.92 0.14 88) 0%,
+      oklch(0.72 0.14 78) 50%,
+      oklch(0.45 0.11 65) 100%
+    )
+  );
   box-shadow:
     0 0 18px var(--planet-glow, oklch(0.82 0.14 82 / 0.5)),
     inset -8px -8px 16px oklch(0 0 0 / 0.5),
     inset 4px 4px 10px oklch(1 0 0 / 0.35);
-  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  transition:
+    box-shadow 0.3s ease,
+    transform 0.3s ease;
 }
 
 .galaxy-planet:hover .galaxy-planet-body {
@@ -301,41 +381,86 @@
 
 /* 3D terminator / atmospheric rim */
 .galaxy-planet-body::before {
-  content: "";
+  content: '';
   position: absolute;
   inset: 0;
   border-radius: 50%;
-  background: radial-gradient(circle at 28% 24%, oklch(1 0 0 / 0.45) 0%, transparent 25%);
+  background: radial-gradient(
+    circle at 28% 24%,
+    oklch(1 0 0 / 0.45) 0%,
+    transparent 25%
+  );
   z-index: 2;
 }
 
 .galaxy-planet-body::after {
-  content: "";
+  content: '';
   position: absolute;
   inset: 0;
   border-radius: 50%;
-  background: radial-gradient(circle at 80% 80%, oklch(0 0 0 / 0.6) 0%, transparent 45%);
+  background: radial-gradient(
+    circle at 80% 80%,
+    oklch(0 0 0 / 0.6) 0%,
+    transparent 45%
+  );
   z-index: 3;
 }
 
 /* Planet texture variants */
 .galaxy-planet-body.gas {
   background:
-    repeating-linear-gradient(0deg, var(--planet-band-1, transparent) 0%, var(--planet-band-2, transparent) 18%, var(--planet-band-1, transparent) 35%),
-    var(--planet-color, radial-gradient(circle at 30% 30%, oklch(0.92 0.14 88) 0%, oklch(0.72 0.14 78) 50%, oklch(0.45 0.11 65) 100%));
+    repeating-linear-gradient(
+      0deg,
+      var(--planet-band-1, transparent) 0%,
+      var(--planet-band-2, transparent) 18%,
+      var(--planet-band-1, transparent) 35%
+    ),
+    var(
+      --planet-color,
+      radial-gradient(
+        circle at 30% 30%,
+        oklch(0.92 0.14 88) 0%,
+        oklch(0.72 0.14 78) 50%,
+        oklch(0.45 0.11 65) 100%
+      )
+    );
 }
 
 .galaxy-planet-body.ice {
   background:
     radial-gradient(circle at 70% 30%, oklch(1 0 0 / 0.35) 0%, transparent 18%),
-    var(--planet-color, radial-gradient(circle at 30% 30%, oklch(0.92 0.14 88) 0%, oklch(0.72 0.14 78) 50%, oklch(0.45 0.11 65) 100%));
+    var(
+      --planet-color,
+      radial-gradient(
+        circle at 30% 30%,
+        oklch(0.92 0.14 88) 0%,
+        oklch(0.72 0.14 78) 50%,
+        oklch(0.45 0.11 65) 100%
+      )
+    );
 }
 
 .galaxy-planet-body.terran {
   background:
-    radial-gradient(circle at 40% 60%, oklch(0.95 0.1 145 / 0.4) 0%, transparent 22%),
-    radial-gradient(circle at 70% 35%, oklch(0.8 0.12 245 / 0.4) 0%, transparent 18%),
-    var(--planet-color, radial-gradient(circle at 30% 30%, oklch(0.92 0.14 88) 0%, oklch(0.72 0.14 78) 50%, oklch(0.45 0.11 65) 100%));
+    radial-gradient(
+      circle at 40% 60%,
+      oklch(0.95 0.1 145 / 0.4) 0%,
+      transparent 22%
+    ),
+    radial-gradient(
+      circle at 70% 35%,
+      oklch(0.8 0.12 245 / 0.4) 0%,
+      transparent 18%
+    ),
+    var(
+      --planet-color,
+      radial-gradient(
+        circle at 30% 30%,
+        oklch(0.92 0.14 88) 0%,
+        oklch(0.72 0.14 78) 50%,
+        oklch(0.45 0.11 65) 100%
+      )
+    );
 }
 
 .galaxy-planet-body.cratered {
@@ -343,7 +468,15 @@
     radial-gradient(circle at 35% 42%, oklch(0 0 0 / 0.25) 0%, transparent 8%),
     radial-gradient(circle at 62% 58%, oklch(0 0 0 / 0.18) 0%, transparent 6%),
     radial-gradient(circle at 48% 72%, oklch(0 0 0 / 0.2) 0%, transparent 7%),
-    var(--planet-color, radial-gradient(circle at 30% 30%, oklch(0.92 0.14 88) 0%, oklch(0.72 0.14 78) 50%, oklch(0.45 0.11 65) 100%));
+    var(
+      --planet-color,
+      radial-gradient(
+        circle at 30% 30%,
+        oklch(0.92 0.14 88) 0%,
+        oklch(0.72 0.14 78) 50%,
+        oklch(0.45 0.11 65) 100%
+      )
+    );
 }
 
 /* Planetary rings */
@@ -432,15 +565,21 @@
 
 @keyframes galaxy-planet-orbit {
   from {
-    transform: translate(-50%, -50%) rotate(calc(var(--start-angle) * 1deg)) translateY(calc(var(--orbit-radius) * -1)) rotate(calc(var(--start-angle) * -1deg)) scale(1);
+    transform: translate(-50%, -50%) rotate(calc(var(--start-angle) * 1deg))
+      translateY(calc(var(--orbit-radius) * -1))
+      rotate(calc(var(--start-angle) * -1deg)) scale(1);
   }
   to {
-    transform: translate(-50%, -50%) rotate(calc((var(--start-angle) + 360) * 1deg)) translateY(calc(var(--orbit-radius) * -1)) rotate(calc((var(--start-angle) + 360) * -1deg)) scale(1);
+    transform: translate(-50%, -50%)
+      rotate(calc((var(--start-angle) + 360) * 1deg))
+      translateY(calc(var(--orbit-radius) * -1))
+      rotate(calc((var(--start-angle) + 360) * -1deg)) scale(1);
   }
 }
 
 @keyframes galaxy-sun-pulse {
-  0%, 100% {
+  0%,
+  100% {
     box-shadow:
       0 0 40px oklch(0.82 0.14 82 / 0.6),
       0 0 80px oklch(0.72 0.14 78 / 0.35),
@@ -457,8 +596,15 @@
 }
 
 @keyframes galaxy-corona {
-  0%, 100% { transform: scale(1); opacity: 0.55; }
-  50% { transform: scale(1.08); opacity: 0.75; }
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.55;
+  }
+  50% {
+    transform: scale(1.08);
+    opacity: 0.75;
+  }
 }
 
 @media (min-width: 640px) {
@@ -523,7 +669,9 @@
 .reveal {
   opacity: 0;
   transform: translateY(28px);
-  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  transition:
+    opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
   will-change: opacity, transform;
 }
 
