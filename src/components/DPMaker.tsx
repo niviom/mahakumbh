@@ -1,4 +1,4 @@
-import Reveal from "@/components/Reveal";
+import Reveal from '@/components/Reveal';
 
 export default function DPMaker() {
   return (
@@ -28,12 +28,12 @@ export default function DPMaker() {
           <span className="h-px w-16 sm:w-24 bg-gradient-to-r from-transparent via-[oklch(0.72_0.14_78)] to-transparent" />
         </div>
         <p className="max-w-2xl mx-auto text-[oklch(0.85_0.03_85)] leading-relaxed">
-          Wear the Mahakumbh crest on your profile. Upload your photo and generate a
-          golden branded display picture in seconds.
+          Wear the Mahakumbh crest on your profile. Upload your photo and
+          generate a golden branded display picture in seconds.
         </p>
 
         <a
-          href="https://mahakumbh-dpmaker.kaama.online/"
+          href="https://dpmaker.jbn-mahakumbh.com"
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center justify-center mt-8 px-8 py-3 bg-gold rounded-sm font-medium tracking-wide shadow-[var(--shadow-gold)] hover:brightness-110 transition"
