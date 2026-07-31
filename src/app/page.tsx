@@ -43,12 +43,10 @@ const goldAuthum = '/assets/sponsors/sponsor-authum.png';
 const goldRdbGroup = '/assets/sponsors/sponsor-rdb-group.png';
 const goldIifl = '/assets/sponsors/sponsor-iifl.png';
 const goldPantomath = '/assets/sponsors/sponsor-pantomath.png';
-const goldAshokaBuildcon = '/assets/sponsors/sponsor-ashoka-buildcon.png';
+const goldSuryaGroup = '/assets/sponsors/sponsor-surya-group.png';
 const goldWaaree = '/assets/sponsors/sponsor-waaree.png';
 const goldMonarchNetworkworth =
   '/assets/sponsors/sponsor-monarch-networkworth.png';
-const goldMohanMutha = '/assets/sponsors/sponsor-mohan-mutha.png';
-const goldEpackDurable = '/assets/sponsors/sponsor-epack-durable.png';
 
 const Divider = () => (
   <div className="flex items-center justify-center gap-3 my-6">
@@ -542,7 +540,7 @@ export default function Home() {
 
           <Reveal className="text-center mb-10">
             <p className="text-xs tracking-[0.3em] uppercase text-[oklch(0.75_0.04_85)] mb-4">
-              Event Title Sponsor
+              Powered By
             </p>
             <div className="mx-auto max-w-md bg-white/5 border border-[oklch(0.72_0.14_78/0.25)] rounded-lg p-6 sm:p-8 shadow-[0_0_40px_-12px_oklch(0.72_0.14_78/0.25)]">
               <img
@@ -559,24 +557,26 @@ export default function Home() {
             <p className="text-xs tracking-[0.3em] uppercase text-[oklch(0.75_0.04_85)] mb-6">
               Gold Sponsors
             </p>
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-5 max-w-6xl mx-auto">
+            <div className="flex flex-wrap justify-center gap-4 sm:gap-5 max-w-6xl mx-auto">
               {[
-                { name: 'Epack Durable', src: goldEpackDurable },
-                { name: 'Pagariya Group', src: goldPagariyaGroup },
                 { name: 'Authum', src: goldAuthum },
-                { name: 'RDB Group', src: goldRdbGroup },
                 { name: 'IIFL', src: goldIifl },
-                { name: 'PantOmath', src: goldPantomath },
-                { name: 'Ashoka Buildcon Ltd.', src: goldAshokaBuildcon },
-                { name: 'Waaree', src: goldWaaree },
                 {
                   name: 'Monarch Networkworth Capital',
                   src: goldMonarchNetworkworth,
                 },
-                { name: 'Mohan Mutha Infrastructures', src: goldMohanMutha },
                 { name: 'Nahar Group', src: goldNahar },
+                { name: 'Pagariya Group', src: goldPagariyaGroup },
+                { name: 'Pantomath', src: goldPantomath },
+                { name: 'RDB Group', src: goldRdbGroup },
+                { name: 'Surya Group', src: goldSuryaGroup },
+                { name: 'Waaree', src: goldWaaree },
               ].map((sponsor, i) => (
-                <Reveal key={sponsor.name} delay={(i % 4) * 80}>
+                <Reveal
+                  key={sponsor.name}
+                  delay={(i % 4) * 80}
+                  className="w-[calc(50%-0.5rem)] sm:w-[calc(33.333%-0.833rem)] lg:w-[calc(20%-1rem)]"
+                >
                   <div className="bg-white rounded-lg p-3 sm:p-4 flex items-center justify-center shadow-[0_4px_20px_-8px_oklch(0_0_0/0.5)] hover:scale-[1.02] transition-transform">
                     <img
                       src={sponsor.src}
@@ -588,17 +588,6 @@ export default function Home() {
                   </div>
                 </Reveal>
               ))}
-              <a
-                href="#support"
-                className="group relative rounded-lg border border-dashed border-[oklch(0.72_0.14_78/0.5)] bg-[oklch(0.72_0.14_78/0.08)] p-3 sm:p-4 flex flex-col items-center justify-center gap-1.5 min-h-[88px] sm:min-h-[112px] hover:bg-[oklch(0.72_0.14_78/0.14)] transition-colors"
-              >
-                <span className="text-[oklch(0.82_0.14_82)] text-xs sm:text-sm tracking-[0.2em] uppercase text-center">
-                  Add Your Brand Here
-                </span>
-                <span className="text-[oklch(0.72_0.14_78/0.8)] text-[10px] sm:text-xs tracking-wider uppercase text-center">
-                  Become a Bhamashah
-                </span>
-              </a>
             </div>
           </div>
         </div>
