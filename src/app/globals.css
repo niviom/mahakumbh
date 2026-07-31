@@ -139,6 +139,8 @@
 
   html {
     scroll-behavior: smooth;
+    scrollbar-width: thin;
+    scrollbar-color: oklch(0.72 0.14 78 / 0.6) oklch(0.14 0.05 265);
   }
 
   body {
@@ -154,6 +156,25 @@
   h4 {
     font-family: var(--font-cormorant), 'Playfair Display', serif;
     letter-spacing: 0.01em;
+  }
+
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: oklch(0.14 0.05 265);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--gradient-gold);
+    border-radius: 9999px;
+    border: 2px solid oklch(0.14 0.05 265);
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: oklch(0.9 0.15 88);
   }
 }
 
@@ -685,5 +706,26 @@
     opacity: 1;
     transform: none;
     transition: none;
+  }
+}
+
+/* Gentle bobbing float, used by the WhatsApp button */
+@keyframes gentle-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.animate-float {
+  animation: gentle-float 3s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-float {
+    animation: none;
   }
 }

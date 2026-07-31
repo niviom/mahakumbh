@@ -20,6 +20,7 @@ const description =
   "Mahakumbh: The Biggest Business Festive. Where India's most ambitious founders, investors and visionaries converge in unparalleled luxury.";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://jbn-mahakumbh.com"),
   title,
   description,
   authors: [{ name: "Mahakumbh" }],

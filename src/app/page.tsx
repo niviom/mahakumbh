@@ -837,7 +837,11 @@ export default function Home() {
                 image: lemonTreeHotel,
               },
             ].map((h, i) => (
-              <Reveal key={h.name} delay={(i % 3) * 100} className="h-full">
+              <Reveal
+                key={`${h.name}-${h.tier}`}
+                delay={(i % 3) * 100}
+                className="h-full"
+              >
                 <article className="relative h-full flex flex-col ornate-frame rounded-sm overflow-hidden bg-[oklch(0.2_0.06_265/0.6)] backdrop-blur-sm hover:translate-y-[-4px] transition-transform">
                   <div className="relative aspect-[4/5] overflow-hidden bg-[oklch(0.14_0.05_265)]">
                     <img
@@ -932,6 +936,65 @@ export default function Home() {
       {/* MAHAKUMBH DP MAKER */}
       <DPMaker />
 
+      {/* ONE JBN APP */}
+      <section className="relative py-16 sm:py-24 px-6">
+        <div className="max-w-3xl mx-auto text-center">
+          <Reveal className="relative ornate-frame rounded-sm p-8 sm:p-12 bg-[oklch(0.18_0.06_265/0.7)] backdrop-blur">
+            <CornerOrnament className="top-2 left-2" />
+            <CornerOrnament className="top-2 right-2 -scale-x-100" />
+            <CornerOrnament className="bottom-2 left-2 -scale-y-100" />
+            <CornerOrnament className="bottom-2 right-2 -scale-100" />
+            <p className="text-xs tracking-[0.4em] uppercase text-[oklch(0.82_0.14_82)]">
+              Stay Connected
+            </p>
+            <h2 className="font-display text-3xl sm:text-5xl mt-4 text-gold">
+              Experience Mahakumbh on ONE JBN Application
+            </h2>
+            <Divider />
+            <p className="text-[oklch(0.85_0.03_85)] max-w-2xl mx-auto mb-8">
+              Download the ONE JBN app for real-time updates, networking and
+              everything Mahakumbh — right in your pocket.
+            </p>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <a
+                href="https://apps.apple.com/us/app/one-jbn/id6743475811"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-3 px-8 py-4 bg-gold rounded-sm font-medium tracking-wide shadow-[var(--shadow-gold)] hover:brightness-110 transition"
+              >
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path d="M16.365 1.43c0 1.14-.493 2.27-1.177 3.08-.744.9-1.99 1.57-2.987 1.57-.12 0-.23-.02-.3-.03-.01-.06-.04-.22-.04-.39 0-1.15.572-2.27 1.206-2.98.804-.94 2.142-1.64 3.248-1.68.03.13.05.28.05.43zm4.565 15.71c-.03.07-.463 1.58-1.518 3.12-.945 1.34-1.94 2.71-3.43 2.71-1.517 0-1.9-.88-3.63-.88-1.698 0-2.302.91-3.67.91-1.377 0-2.332-1.26-3.428-2.8-1.287-1.82-2.323-4.63-2.323-7.28 0-4.28 2.797-6.55 5.552-6.55 1.448 0 2.675.95 3.6.95.865 0 2.222-1.01 3.902-1.01.633 0 2.935.06 4.446 2.25-.12.08-2.657 1.56-2.657 4.63 0 3.67 3.24 4.99 3.156 5.04z" />
+                </svg>
+                <span className="text-base sm:text-lg">Download for iOS</span>
+              </a>
+              <a
+                href="https://play.google.com/store/apps/details?id=com.onejbn.app"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-3 px-8 py-4 border border-gold text-[oklch(0.9_0.1_85)] rounded-sm hover:bg-[oklch(0.72_0.14_78/0.1)] transition"
+              >
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path d="M17.6 9.48l1.84-3.18c.16-.31.04-.69-.26-.85-.29-.15-.65-.06-.83.22l-1.88 3.24c-2.86-1.21-6.08-1.21-8.94 0L5.65 5.67c-.19-.29-.58-.38-.87-.2-.28.18-.37.54-.22.83L6.4 9.48C3.3 11.25 1.28 14.44 1 18h22c-.28-3.56-2.3-6.75-5.4-8.52zM7 15.25c-.69 0-1.25-.56-1.25-1.25s.56-1.25 1.25-1.25 1.25.56 1.25 1.25-.56 1.25-1.25 1.25zm10 0c-.69 0-1.25-.56-1.25-1.25s.56-1.25 1.25-1.25 1.25.56 1.25 1.25-.56 1.25-1.25 1.25z" />
+                </svg>
+                <span className="text-base sm:text-lg">
+                  Download for Android
+                </span>
+              </a>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
       <footer className="relative border-t border-[oklch(0.72_0.14_78/0.2)] py-10 px-6 text-center text-sm text-[oklch(0.7_0.04_85)]">
         <img
           src={logo}
@@ -966,6 +1029,21 @@ export default function Home() {
             Register Now
           </a>
         </div>
+      </div>
+
+      {/* WHATSAPP FLOATING BUTTON */}
+      <div className="fixed z-[60] right-4 sm:right-6 bottom-20 sm:bottom-24 animate-float">
+        <a
+          href="https://wa.me/917208496062"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Chat with us on WhatsApp"
+          className="flex items-center justify-center w-14 h-14 rounded-full bg-gold shadow-[var(--shadow-gold)] hover:brightness-110 hover:scale-105 transition-transform"
+        >
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413" />
+          </svg>
+        </a>
       </div>
     </main>
   );
