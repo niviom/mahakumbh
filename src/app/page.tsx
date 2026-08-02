@@ -577,7 +577,6 @@ export default function Home() {
             </p>
             <div className="flex flex-wrap justify-center gap-4 sm:gap-5 max-w-6xl mx-auto">
               {[
-                { name: 'Bhamashah Group', src: goldBhamashah },
                 { name: 'Authum', src: goldAuthum },
                 { name: 'IIFL', src: goldIifl },
                 {
@@ -590,6 +589,7 @@ export default function Home() {
                 { name: 'RDB Group', src: goldRdbGroup },
                 { name: 'Surya Group', src: goldSuryaGroup },
                 { name: 'Waaree', src: goldWaaree },
+                { name: 'Bhamashah Group', src: goldBhamashah },
               ].map((sponsor, i) => (
                 <Reveal
                   key={sponsor.name}
