@@ -47,8 +47,7 @@ const goldSuryaGroup = '/assets/sponsors/sponsor-surya-group.png';
 const goldWaaree = '/assets/sponsors/sponsor-waaree.png';
 const goldMonarchNetworkworth =
   '/assets/sponsors/sponsor-monarch-networkworth.png';
-const goldBhamashah = '/assets/sponsors/sponsor-bhamashah.png';
-const goldIiflCapital = '/assets/sponsors/sponser-iifl-capital.png';
+const Silverton = '/assets/sponsors/sponser-silverton.jpg';
 
 const Divider = () => (
   <div className="flex items-center justify-center gap-3 my-6">
@@ -588,10 +587,9 @@ export default function Home() {
                 { name: 'Pagariya Group', src: goldPagariyaGroup },
                 { name: 'Pantomath', src: goldPantomath },
                 { name: 'RDB Group', src: goldRdbGroup },
+                { name: 'Silverton', src: Silverton },
                 { name: 'Surya Group', src: goldSuryaGroup },
                 { name: 'Waaree', src: goldWaaree },
-                { name: 'Bhamashah Group', src: goldBhamashah },
-                { name: 'IIFL Capital', src: goldIiflCapital },
               ].map((sponsor, i) => (
                 <Reveal
                   key={sponsor.name}
